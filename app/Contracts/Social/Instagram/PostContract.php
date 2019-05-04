@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Social\Instagram;
 
+use App\Contracts\Root\AuthorContract;
 use Illuminate\Support\Collection;
 
 interface PostContract
@@ -26,5 +27,5 @@ interface PostContract
 
     public function getLink(): ?string;
 
-    public function getAuthor(): ?string;
+    public function getAuthor(): ?AuthorContract;
 }

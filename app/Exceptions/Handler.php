@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Controllers\Api\InvalidFormatException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,6 +47,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof InvalidFormatException) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        } else if ($exception instanceof RequestException) {
+            return response()->json(['error' => 'External API call failed.'], 500);
+        }
+
         return parent::render($request, $exception);
     }
 }

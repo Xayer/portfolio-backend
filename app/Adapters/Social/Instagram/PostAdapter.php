@@ -8,6 +8,7 @@
 
 namespace App\Adapters\Social\Instagram;
 
+use App\Contracts\Root\AuthorContract;
 use App\Contracts\Social\Instagram\PostContract;
 use Illuminate\Support\Collection;
 
@@ -51,7 +52,7 @@ class PostAdapter implements PostContract
 
     public function getTags(): ?Collection
     {
-        return null;
+        return collect($this->post->tags) ?: null;
     }
 
     public function getFilter(): ?string
@@ -69,8 +70,8 @@ class PostAdapter implements PostContract
         return $this->post->link ?: null;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?AuthorContract
     {
-        return $this->post->caption->from->username ?: null;
+        return new InstagramAuthorAdapter($this->post->caption->from ?? $this->post->user) ?: null;
     }
 }

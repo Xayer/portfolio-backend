@@ -7,6 +7,7 @@ use App\Adapters\Social\Instagram\InstagramImageAdapter;
 use App\Contracts\Social\Instagram\Post;
 use App\Contracts\Social\Instagram\PostContract;
 use App\Models\Root\Image;
+use App\Transformers\Root\AuthorTransformer;
 use App\Transformers\Root\ImageTransformer;
 use Illuminate\Support\Collection;
 use League\Fractal\TransformerAbstract;
@@ -15,10 +16,12 @@ use Spatie\Fractal\Facades\Fractal;
 class SocialFeedPostTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-        'images'
+        'images',
+        'author'
     ];
     protected $availableIncludes = [
-        'images'
+        'images',
+        'author'
     ];
     public function transform(PostContract $post)
     {
@@ -30,7 +33,6 @@ class SocialFeedPostTransformer extends TransformerAbstract
             'link' => $post->getLink(),
             'likes' => $post->getLikes(),
             'filter' => $post->getFilter(),
-            'author' => $post->getAuthor(),
             'type' => $post->getType(),
         ];
     }
@@ -41,5 +43,9 @@ class SocialFeedPostTransformer extends TransformerAbstract
             return new Image(new InstagramImageAdapter($image));
         });
         return $this->collection($images, new ImageTransformer());
+    }
+
+    public function includeAuthor(PostContract $post){
+        return $this->item($post->getAuthor(), new AuthorTransformer());
     }
 }

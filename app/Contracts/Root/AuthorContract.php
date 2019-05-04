@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Contracts\Social\Instagram;
+namespace App\Contracts\Root;
 
-use App\Contracts\ImageContract;
-
-interface Author
+interface AuthorContract
 {
     public function getId(): ?int;
 

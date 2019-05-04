@@ -2,10 +2,8 @@
 
 namespace App\Adapters\Social\Instagram;
 
-use App\Contracts\Social\Instagram\PostContract;
 use App\Contracts\Social\SocialFeedContract;
 use App\Models\Social\SocialPost;
-use App\Repositories\InstagramRepository;
 use Illuminate\Support\Collection;
 
 

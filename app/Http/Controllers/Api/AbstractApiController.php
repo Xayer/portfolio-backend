@@ -3,9 +3,11 @@
 namespace App\Controllers\Api;
 
 use App\Exceptions\Controllers\Api\BaseModelMissingException;
+use App\Exceptions\Controllers\Api\InvalidFormatException;
 use App\Exceptions\Controllers\Api\TransformerMappingMissingException;
 use App\Factories\Contracts\ModelFactoryContract;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Spatie\Fractal\Facades\Fractal;
 
 abstract class AbstractApiController implements ApiControllerContract
@@ -98,10 +100,7 @@ abstract class AbstractApiController implements ApiControllerContract
                 $format,
                 json_encode(array_keys($this->transformerMapping))
             );
-            status_header(422, $errorMsg);
-            exit(json_encode([
-                'Error' => $errorMsg
-            ]));
+            throw new InvalidFormatException($errorMsg, 422);
         }
     }
 }

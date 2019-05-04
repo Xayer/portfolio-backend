@@ -8,6 +8,7 @@
 
 namespace App\Models\Social;
 
+use App\Contracts\Root\AuthorContract;
 use App\Contracts\Social\Instagram\PostContract;
 use Illuminate\Support\Collection;
 
@@ -69,7 +70,7 @@ class SocialPost implements PostContract
         return $this->post->getLink();
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?AuthorContract
     {
         return $this->post->getAuthor();
     }
