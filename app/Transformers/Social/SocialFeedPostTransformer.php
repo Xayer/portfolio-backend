@@ -16,12 +16,12 @@ use Spatie\Fractal\Facades\Fractal;
 class SocialFeedPostTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-        'images',
-        'author'
+        'author',
+        'images'
     ];
     protected $availableIncludes = [
-        'images',
-        'author'
+        'author',
+        'images'
     ];
     public function transform(PostContract $post)
     {
@@ -39,13 +39,14 @@ class SocialFeedPostTransformer extends TransformerAbstract
 
     public function includeImages(PostContract $post)
     {
-        $images = $post->getImages()->transform(function($image){
+        $images = $post->getImages()->transform(function ($image) {
             return new Image(new InstagramImageAdapter($image));
         });
         return $this->collection($images, new ImageTransformer());
     }
 
-    public function includeAuthor(PostContract $post){
+    public function includeAuthor(PostContract $post)
+    {
         return $this->item($post->getAuthor(), new AuthorTransformer());
     }
 }

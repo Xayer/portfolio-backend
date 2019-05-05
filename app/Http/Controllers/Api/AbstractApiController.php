@@ -8,6 +8,7 @@ use App\Exceptions\Controllers\Api\TransformerMappingMissingException;
 use App\Factories\Contracts\ModelFactoryContract;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use League\Fractal\Manager;
 use Spatie\Fractal\Facades\Fractal;
 
 abstract class AbstractApiController implements ApiControllerContract
@@ -70,8 +71,9 @@ abstract class AbstractApiController implements ApiControllerContract
     public function getResponse()
     {
         $this->validateFormat();
-        fractal()->parseIncludes($this->request->query(static::INCLUDES_QUERY_PARAM) ?? '');
-        fractal()->parseExcludes($this->request->query(static::EXCLUDES_QUERY_PARAM) ?? '');
+        $manager = new Manager();
+        $manager->parseIncludes($this->request->query(static::INCLUDES_QUERY_PARAM) ?? '');
+        $manager->parseExcludes($this->request->query(static::EXCLUDES_QUERY_PARAM) ?? '');
         $item = Fractal::item($this->model, $this->getTransformer())
             ->createData()
             ->toArray();
