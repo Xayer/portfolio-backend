@@ -15,4 +15,4 @@ use Illuminate\Http\Request;
 
 Route::get('/image/{url}', 'Api\Root\ImageController@showImage');
 
-Route::get('/social/{platform}', 'Api\Social\SocialController@detectPlatform');
+Route::get('/social/{platform}/{type}', 'Api\Social\SocialApiController@detectPlatform');

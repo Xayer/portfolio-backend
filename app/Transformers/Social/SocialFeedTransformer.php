@@ -2,10 +2,8 @@
 
 namespace App\Transformers\Social;
 
-use App\Contracts\Root\ImageContract;
 use App\Contracts\Social\SocialFeedContract;
 use League\Fractal\TransformerAbstract;
-use Spatie\Fractal\Facades\Fractal;
 
 class SocialFeedTransformer extends TransformerAbstract
 {

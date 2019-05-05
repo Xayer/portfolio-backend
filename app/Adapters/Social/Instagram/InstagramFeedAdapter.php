@@ -17,7 +17,7 @@ class InstagramFeedAdapter implements SocialFeedContract
 
     public function getFeed(): ?Collection
     {
-        return collect($this->repo->getRecentPosts())->transform(function($post){
+        return collect($this->repo->getRecentPosts())->transform(function ($post) {
             return new SocialPost(new PostAdapter($post));
         });
     }
