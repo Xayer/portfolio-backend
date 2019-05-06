@@ -13,8 +13,8 @@ use Spatie\Fractal\Facades\Fractal;
 
 abstract class AbstractApiController implements ApiControllerContract
 {
-    const INCLUDES_QUERY_PARAM = 'with';
-    const EXCLUDES_QUERY_PARAM = 'without';
+    const INCLUDES_QUERY_PARAM = 'include';
+    const EXCLUDES_QUERY_PARAM = 'exclude';
     const FORMAT_QUERY_PARAM = 'format';
 
     protected $fractal;
