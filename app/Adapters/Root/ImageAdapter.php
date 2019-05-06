@@ -3,6 +3,7 @@
 namespace App\Adapters\Root;
 
 use App\Contracts\Root\ImageContract;
+use Illuminate\Support\Collection;
 
 class ImageAdapter implements ImageContract
 {
@@ -25,5 +26,10 @@ class ImageAdapter implements ImageContract
     public function getHeight(): ?int
     {
         return null;
+    }
+
+    public function getColors(): ?Collection
+    {
+        return collect([]);
     }
 }
