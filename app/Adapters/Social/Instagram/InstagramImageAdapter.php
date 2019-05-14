@@ -5,6 +5,7 @@ namespace App\Adapters\Social\Instagram;
 use App\Contracts\Root\ImageContract;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use League\ColorExtractor\Palette;
 
 class InstagramImageAdapter implements ImageContract
 {
