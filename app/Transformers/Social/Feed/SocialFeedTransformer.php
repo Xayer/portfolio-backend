@@ -7,6 +7,10 @@ use League\Fractal\TransformerAbstract;
 
 class SocialFeedTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = [
+        'feed'
+    ];
+
     protected $availableIncludes = [
         'feed'
     ];
