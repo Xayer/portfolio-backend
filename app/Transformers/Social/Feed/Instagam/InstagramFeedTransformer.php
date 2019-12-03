@@ -5,7 +5,7 @@ namespace App\Transformers\Social;
 use App\Contracts\Social\SocialFeedContract;
 use League\Fractal\TransformerAbstract;
 
-class SocialFeedTransformer extends TransformerAbstract
+class InstagramFeedTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'feed'

@@ -53,9 +53,9 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => $exception->getMessage()], $exception->getCode());
         } elseif ($exception instanceof RequestException) {
             return response()->json(['error' => 'External API call failed.'], 500);
-        } elseif ($exception instanceof Exception) {
+        } /*elseif ($exception instanceof Exception) {
             return response()->json(['error' => $exception->getMessage()], $exception->getCode());
-        }
+        }*/
 
         return parent::render($request, $exception);
     }

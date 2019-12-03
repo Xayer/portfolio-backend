@@ -3,6 +3,7 @@
 namespace App\Models\Root;
 
 use App\Contracts\Root\ImageContract;
+use Illuminate\Support\Collection;
 
 class Image implements ImageContract
 {
@@ -26,6 +27,11 @@ class Image implements ImageContract
     public function getHeight(): ?int
     {
         return $this->image->getHeight();
+    }
+
+    public function getColors(): ?Collection
+    {
+        return $this->image->getColors();
     }
 }
 
